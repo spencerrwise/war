@@ -18,7 +18,7 @@ $(document).ready(function() {
 		return value.toString();
 	}
 
-	//what does this do?
+	//what does this do? 
 	var deck = [];
 	var suits = ['hearts', 'diamonds', 'spades', 'clubs'];
 	for (var i = 0; i<suits.length; i++) {
@@ -27,7 +27,6 @@ $(document).ready(function() {
 			deck.push({number: j+1, suit: suit});
 		}
 	}
-	
 	//what does this do?
 	var shuffle = function(array) { 
 		var copy = [];
@@ -39,18 +38,48 @@ $(document).ready(function() {
 		 		delete array[i]; 
 		 		n--; 
 		 	} 
-		} 
+		}
 		return copy; 
 	}
 	
 	var cards_player_1 = [];
 	var cards_player_2 = [];
 	//divide out the cards into the two arrays
+
+	deck = shuffle(deck);
+	//divide out the cards into the two arrays
+	for (var i=0; i<deck.length; i++){
+			if(i % 2 === 0){
+				cards_player_1.push(deck[i]);
+			}
+			else{
+				cards_player_2.push(deck[i]);
+			}
+	}
+
+console.log(cards_player_1);
+console.log(cards_player_2);
 	
 	
 	//create a function (algorithm) called "war" that takes two cards as parameters, compares them and returns a winner. A tie should return false.
-	function war() {
+	function war(card1, card2) {
+		if (card1.number > card2.number) {
+			return card1;
+			
+		}
+		if (card1.number < card2.number){
+			return card2;
+			
+		}
+		if (card1.number === card2.number){
+			return false;
+			
+		}
 	}
+
+	var winner = war(cards_player_1[0], cards_player_2[0]);
+	console.log(winner);
+
 	
 	
 	//create a play function
